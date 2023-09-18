@@ -10,7 +10,7 @@
         }
 </style>
 
-<dev class="home-container">
+<div class="home-container">
 
 
     <div>
@@ -26,27 +26,28 @@
         {% endfor %}
     </div>
         <div>
+            <h5>{{room_count}} rooms available</h5>
             <a href="{% url 'create-room' %}">Create Room</a>
-    <div>
-        {% for room in rooms %}
-        <div>
-            <h5>
-                <a href="{% url 'update-room' room.id %}">Edit</a>
-                <a href="{% url 'delete-room' room.id %}">Delete</a>
+         <div>
+            {% for room in rooms %}
+            <div>
+                <h5>
+                    <a href="{% url 'update-room' room.id %}">Edit</a>
+                    <a href="{% url 'delete-room' room.id %}">Delete</a>
             
-                <br>
-                <span>@{{room.host.username}}</span>
-                <br>
-                {{room.id}}--<a href="{% url 'room' room.id %}">{{room.name}}</a>
-                <br>
-                <small>{{room.topic.name}}</small>
+                    <br>
+                    <span>@{{room.host.username}}</span>
+                    <br>
+                    {{room.id}}--<a href="{% url 'room' room.id %}">{{room.name}}</a>
+                    <br>
+                    <small>{{room.topic.name}}</small>
 
-                <hr>
-            </h5>
+                    <hr>
+                </h5>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
         
         </div>
-</dev>
+</div>
 {% endblock content %}
