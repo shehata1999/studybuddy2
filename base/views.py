@@ -53,7 +53,7 @@ def registerPage(request):
             login(request, user)
             return redirect('login')
         else:
-            messages.error(request, 'An error occured during registeration')
+            messages.error(request, 'An error occurred during registeration')
     context = {'form':form}
     return render(request, 'base/login_register.html', context)
 
@@ -71,7 +71,8 @@ def home(request):
     return render(request, 'base/home.html', context)
 def room(request,pk):
     room = Room.objects.get(id=pk)
-    context = {'room':room}
+    room_messages = room.message_set.all().order_by('-created')
+    context = {'room':room,'room_messages':room_messages}
     return render(request, 'base/room.html',context)
 @login_required(login_url='login')
 def createRoom(request):
